@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'Ubuntu';
+  src: url('/Ubuntu-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Silkscreen';
+  src: url('/Silkscreen-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Barriecito';
+  src: url('/Barriecito-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-primary text-white font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-glow-primary;
+  }
+  
+  .btn-secondary {
+    @apply bg-brand-white bg-opacity-10 border-2 border-brand-white hover:bg-brand-white hover:text-brand-dark text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300;
+  }
+  
+  .btn-beta {
+    @apply bg-gradient-primary text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-glow-primary;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-primary bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:transform hover:scale-105 hover:shadow-2xl;
+  }
+  
+  .chat-bubble-ai {
+    @apply bg-gradient-primary text-white font-medium rounded-2xl p-4 shadow-glow-primary;
+  }
+  
+  .chat-bubble-user {
+    @apply bg-brand-white bg-opacity-10 text-white rounded-2xl p-4 border border-brand-white border-opacity-20;
+  }
+  
+  .beta-badge {
+    @apply bg-gradient-primary p-0.5 rounded-full inline-flex items-center;
+  }
+  
+  .section-background {
+    @apply bg-brand-dark;
+  }
+} 
