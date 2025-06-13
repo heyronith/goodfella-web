@@ -34,14 +34,14 @@ const FinalCTA = () => {
     const formData = new FormData(form);
     
     try {
-      // Submit to Google Forms
-      const response = await fetch('https://docs.google.com/forms/u/0/d/1GiGdl6A6HR90l9yi9Fx8rl_JqF7YdgUgvxyaNpU6hv8/formResponse', {
+      // Submit to Google Forms using the correct public URL
+      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSe41iyv0bbKFSprstzJqTRhVsxyvqEPLNqJrXtXYPsLywMSFA/formResponse', {
         method: 'POST',
-        mode: 'no-cors', // Important for Google Forms
+        mode: 'no-cors',
         body: formData
       });
 
-      // Google Forms with no-cors always appears successful
+      // With no-cors mode, we can't check the response, so we assume success
       setIsSubmitted(true);
       form.reset();
       setTimeout(() => {
@@ -50,7 +50,7 @@ const FinalCTA = () => {
       
     } catch (error) {
       console.error('Error submitting form:', error);
-      // Even if there's an error, the form might have been submitted
+      // Still show success since Google Forms might have received it
       setIsSubmitted(true);
       form.reset();
       setTimeout(() => {
@@ -97,7 +97,12 @@ const FinalCTA = () => {
             className="max-w-md mx-auto mb-8"
           >
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form 
+                onSubmit={handleSubmit} 
+                action="https://docs.google.com/forms/d/e/1FAIpQLSe41iyv0bbKFSprstzJqTRhVsxyvqEPLNqJrXtXYPsLywMSFA/formResponse"
+                method="POST"
+                className="space-y-4"
+              >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="relative">
                     <input
