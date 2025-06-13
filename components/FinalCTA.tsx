@@ -33,20 +33,40 @@ const FinalCTA = () => {
     const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
     
+    // Get form values
+    const firstName = formData.get('entry.1562131595');
+    const lastName = formData.get('entry.1492891315');
+    const email = formData.get('entry.1955187390');
+    
+    console.log('Submitting to Google Forms:', { firstName, lastName, email });
+    
     try {
-      // Submit to Google Forms using the correct public URL
+      // Create URLSearchParams for better compatibility
+      const params = new URLSearchParams();
+      params.append('entry.1562131595', firstName as string);
+      params.append('entry.1492891315', lastName as string);
+      params.append('entry.1955187390', email as string);
+      
+      // Submit to Google Forms using URLSearchParams
       await fetch('https://docs.google.com/forms/d/e/1FAIpQLSe41iyv0bbKFSprstzJqTRhVsxyvqEPLNqJrXtXYPsLywMSFA/formResponse', {
         method: 'POST',
         mode: 'no-cors',
-        body: formData
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: params.toString()
       });
 
-      // With no-cors mode, we can't check the response, so we assume success
+      console.log('Form submitted successfully');
+      
+      // Show success message
       setIsSubmitted(true);
       form.reset();
+      
+      // Reset after 10 seconds to give users time to see the message
       setTimeout(() => {
         setIsSubmitted(false);
-      }, 5000);
+      }, 10000);
       
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -55,7 +75,7 @@ const FinalCTA = () => {
       form.reset();
       setTimeout(() => {
         setIsSubmitted(false);
-      }, 5000);
+      }, 10000);
     } finally {
       setIsLoading(false);
     }
@@ -144,11 +164,21 @@ const FinalCTA = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-gradient-to-r from-brand-amber to-brand-yellow bg-opacity-20 border border-brand-amber rounded-xl p-6 text-center"
+                className="bg-gradient-to-r from-brand-amber to-brand-yellow rounded-xl p-8 text-center shadow-lg"
               >
-                <span className="text-brand-amber font-semibold">
-                  Welcome to the future. You're now part of something bigger.
-                </span>
+                <div className="flex items-center justify-center mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-800 mr-3" />
+                  <span className="text-2xl">🎉</span>
+                </div>
+                <h3 className="text-xl font-bold text-black mb-2">
+                  Welcome to the future!
+                </h3>
+                <p className="text-black font-semibold">
+                  You're now part of something bigger.
+                </p>
+                <p className="text-black/80 text-sm mt-2">
+                  We'll be in touch soon with your early access details.
+                </p>
               </motion.div>
             )}
           </motion.div>
