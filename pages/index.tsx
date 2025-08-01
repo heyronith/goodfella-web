@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>GoodFella - Your AI Life Partner That Actually Gets You</title>
+        <title>GoodFella</title>
         <meta 
           name="description" 
           content="Join the beta! Meet GoodFella, your personal AI life partner who learns your personality, plans your perfect day, and checks in when you're not okay. Sign up for early access." 
