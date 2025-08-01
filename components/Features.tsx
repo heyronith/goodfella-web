@@ -224,7 +224,8 @@ const Features = () => {
                         preload="metadata"
                         className="w-full h-full object-cover"
                       >
-                        <source src="/You.mov" type="video/mp4" />
+                        <source src="/You.MOV" type="video/quicktime" />
+                        <source src="/You.MOV" type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                     </div>
