@@ -26,7 +26,7 @@ export default function Home() {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://goodfella.ai" />
-        <meta property="og:title" content="GoodFella - Your AI Life Partner That Actually Gets You" />
+        <meta property="og:title" content="GoodFella - New age of friendship awaits" />
         <meta 
           property="og:description" 
           content="Join the beta! Meet GoodFella, your personal AI life partner who learns your personality, plans your perfect day, and checks in when you're not okay." 
@@ -36,7 +36,7 @@ export default function Home() {
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://goodfella.ai" />
-        <meta property="twitter:title" content="GoodFella - Your AI Life Partner That Actually Gets You" />
+        <meta property="twitter:title" content="GoodFella - New age of friendship awaits" />
         <meta 
           property="twitter:description" 
           content="Join the beta! Meet GoodFella, your personal AI life partner who learns your personality, plans your perfect day, and checks in when you're not okay." 

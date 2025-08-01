@@ -16,7 +16,7 @@ const RunningText = () => {
       <div className="relative z-10 flex items-center justify-center min-h-[120px]">
         <div className="text-center">
           
-          {/* Single line text with pulse animations */}
+          {/* Moving text with horizontal scroll animation */}
           <motion.div
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={{ 
@@ -29,8 +29,19 @@ const RunningText = () => {
               y: { duration: 1.2, delay: 0.3 },
               scale: { duration: 1.2, delay: 0.3 }
             }}
-            className="whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-wider text-gray-300"
+            className="whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-wider text-gray-300 overflow-hidden"
           >
+            <motion.div
+              animate={{ 
+                x: [0, -100, 0],
+              }}
+              transition={{ 
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="inline-block"
+            >
             <motion.span 
               className="font-silkscreen inline-block"
               initial={{ opacity: 0 }}
@@ -69,6 +80,7 @@ const RunningText = () => {
             >
               Human's <span className="text-brand-yellow">Heart</span>.
             </motion.span>
+            </motion.div>
           </motion.div>
 
           {/* Floating dots pattern with enhanced animation */}

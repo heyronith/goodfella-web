@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { MessageCircle, Play, X, Sparkles, Heart, Zap, MessageSquare, Smile, Users } from 'lucide-react';
 import Image from 'next/image';
@@ -12,6 +12,8 @@ const Hero = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
 
   const controls = useAnimation();
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+  const modalVideoRef = useRef<HTMLVideoElement>(null);
   const friendshipText = 'Friendship.';
 
   // Intro animation sequence
@@ -60,6 +62,39 @@ const Hero = () => {
     }, 500);
 
     return () => clearInterval(cursorInterval);
+  }, [animationComplete]);
+
+  // Start video playback when animation is complete
+  useEffect(() => {
+    if (animationComplete && heroVideoRef.current) {
+      const video = heroVideoRef.current;
+      
+      // Ensure video is paused and reset to beginning
+      video.pause();
+      video.currentTime = 0;
+      
+      // Wait for video to be ready and then play
+      const startVideo = () => {
+        video.play().catch(console.error);
+      };
+      
+      if (video.readyState >= 3) {
+        // Video is ready, start after delay
+        setTimeout(startVideo, 500);
+      } else {
+        // Wait for video to be ready
+        video.addEventListener('canplay', () => {
+          setTimeout(startVideo, 500);
+        }, { once: true });
+      }
+    }
+  }, [animationComplete]);
+
+  // Ensure video doesn't autoplay before animations are complete
+  useEffect(() => {
+    if (heroVideoRef.current && !animationComplete) {
+      heroVideoRef.current.pause();
+    }
   }, [animationComplete]);
 
   // Floating animation variants
@@ -112,9 +147,9 @@ const Hero = () => {
                 transition={{ duration: 0.8 }}
                 className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed font-light"
             >
-                Where artificial intelligence meets authentic connection.
+                A true friend is proactive, brings people closer together, and is always there when you need them.
                 <br />
-                Experience what's possible when technology truly understands you and becomes the friend you've always needed.
+                We're excited to put that kind of friendship right in the palm of your hand.
             </motion.p>
             )}
             
@@ -150,7 +185,7 @@ const Hero = () => {
             )}
           </div>
 
-          {/* Right Content - Demo Video - only show after animation is complete */}
+          {/* Right Content - iPhone Demo - only show after animation is complete */}
           {animationComplete && (
           <motion.div
             initial={{ opacity: 0, x: 50 }}
@@ -158,29 +193,69 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative flex items-center justify-center"
           >
-            <div className="relative max-w-md mx-auto">
-              {/* Enhanced Video Container with Glow Effect */}
-              <div className="relative group">
-                <div className="absolute -inset-4 bg-gradient-to-r from-brand-amber via-brand-yellow to-orange-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-                <div className="relative aspect-square overflow-hidden rounded-2xl shadow-2xl bg-black border border-gray-800 group-hover:border-brand-amber/50 transition-all duration-500">
-                <video
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  poster="/goodfella-logo.png"
-                >
-                  <source src="/demo-video.mov" type="video/mp4" />
-                  <source src="/demo-video.mov" type="video/quicktime" />
-                  Your browser does not support the video tag.
-                </video>
+            <div className="relative max-w-xs mx-auto">
+              {/* iPhone Mockup Container */}
+              <div className="relative group scale-75 lg:scale-90">
+                {/* Glow Effect */}
+                <div className="absolute -inset-6 bg-gradient-to-r from-brand-amber via-brand-yellow to-orange-400 rounded-[2.5rem] blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
+                
+                                  {/* iPhone Frame */}
+                  <div className="relative">
+                    {/* iPhone Outer Frame */}
+                    <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2.5rem] p-1.5 shadow-2xl border border-gray-700 group-hover:border-brand-amber/30 transition-all duration-500">
+                      {/* iPhone Inner Frame */}
+                      <div className="bg-black rounded-[2rem] p-0.5 relative overflow-hidden">
+                        {/* Dynamic Island */}
+                        <div className="absolute top-3 left-1/2 transform -translate-x-1/2 w-20 h-5 bg-black rounded-full z-20 shadow-lg"></div>
+                      
+                                              {/* Screen Content */}
+                        <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.8rem] bg-black">
+                          <video
+                            ref={heroVideoRef}
+                            muted
+                            playsInline
+                            autoPlay
+                            preload="auto"
+                            loop
+                            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
+                          >
+                            <source src="/hero.mov" type="video/mp4" />
+                            <source src="/hero.mov" type="video/quicktime" />
+                            Your browser does not support the video tag.
+                          </video>
+                          
+                          {/* Subtle Screen Overlay for Realism */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/5 pointer-events-none"></div>
+                        </div>
+                        
+                        {/* Home Indicator */}
+                        <div className="absolute bottom-1.5 left-1/2 transform -translate-x-1/2 w-28 h-0.5 bg-white/30 rounded-full"></div>
+                    </div>
+                  </div>
+                  
+                                      </div>
                   
 
-                </div>
+                
+                                  {/* Floating Elements for Added Realism */}
+                  <motion.div
+                    variants={floatingVariants}
+                    animate="animate"
+                    className="absolute -top-3 -right-3 w-2 h-2 bg-brand-amber/40 rounded-full blur-sm"
+                  />
+                  <motion.div
+                    variants={floatingVariants}
+                    animate="animate"
+                    style={{ animationDelay: '2s' }}
+                    className="absolute -bottom-4 -left-4 w-1.5 h-1.5 bg-blue-400/30 rounded-full blur-sm"
+                  />
+                  <motion.div
+                    variants={floatingVariants}
+                    animate="animate"
+                    style={{ animationDelay: '4s' }}
+                    className="absolute top-1/2 -right-6 w-3 h-3 bg-purple-400/20 rounded-full blur-sm"
+                  />
               </div>
-              
-
             </div>
           </motion.div>
           )}
@@ -227,26 +302,49 @@ const Hero = () => {
               </motion.button>
             </div>
             
-            <div className="aspect-square bg-black rounded-xl overflow-hidden mb-6 border border-gray-600 max-w-md mx-auto relative group">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                controls
-                className="w-full h-full object-cover"
-                poster="/goodfella-logo.png"
-              >
-                <source src="/demo-video.mov" type="video/mp4" />
-                <source src="/demo-video.mov" type="video/quicktime" />
-                Your browser does not support the video tag.
-              </video>
+            {/* iPhone Mockup in Modal */}
+            <div className="max-w-sm mx-auto mb-6">
+              <div className="relative">
+                {/* iPhone Outer Frame */}
+                <div className="relative bg-gradient-to-b from-gray-700 to-gray-800 rounded-[3rem] p-2 shadow-2xl border border-gray-600">
+                  {/* iPhone Inner Frame */}
+                  <div className="bg-black rounded-[2.5rem] p-1 relative overflow-hidden">
+                    {/* Dynamic Island */}
+                    <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-20 shadow-lg"></div>
+                    
+                    {/* Screen Content */}
+                    <div className="relative aspect-[9/19.5] overflow-hidden rounded-[2.3rem] bg-black">
+                      <video
+                        ref={modalVideoRef}
+                        muted
+                        playsInline
+                        controls
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                      >
+                        <source src="/hero.mov" type="video/mp4" />
+                        <source src="/hero.mov" type="video/quicktime" />
+                        Your browser does not support the video tag.
+                      </video>
+                      
+                      {/* Subtle Screen Overlay for Realism */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-white/5 pointer-events-none"></div>
+                    </div>
+                    
+                    {/* Home Indicator */}
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-white/30 rounded-full"></div>
+                  </div>
+                </div>
+                
+              </div>
             </div>
             
+
+            
             <div className="text-center">
-              <h4 className="text-xl font-bold mb-3 text-white">Experience True AI Friendship</h4>
+              <h4 className="text-xl font-bold mb-3 text-white">Experience Neural Intelligence</h4>
               <p className="text-gray-300 mb-6">
-                See how GoodFella remembers, learns, and genuinely cares about your wellbeing.
+                Watch as artificial intelligence emerges from neural networks, forming connections that mirror the cosmic web of creation.
               </p>
               
               <motion.button 

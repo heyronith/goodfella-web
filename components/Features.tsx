@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Brain, 
@@ -9,70 +9,62 @@ import {
 
 const Features = () => {
   const [activeFeature, setActiveFeature] = useState(0);
+  const featureVideoRef = useRef<HTMLVideoElement>(null);
 
   const features = [
     {
       id: 'memories-everything',
       title: 'Built to Remember : You',
       subtitle: 'Like a friend who remembers what you forgot',
-      description: 'GoodFella remembers the you behind it all. It knows your rhythm. Your goals. Your moods. So when life moves fast, you don\'t fall behind.',
+      description: 'GoodFella remembers the you behind it all. It knows your rhythm, your goals, your moods, and keeps up with your evolving priorities. You’re seen, understood, and never forgotten—your personal patterns, energy cycles, and what truly matters to you are always top of mind.',
       icon: Brain,
       gradient: 'from-blue-500 to-cyan-500',
-      benefits: [
-        'You\'re seen. You\'re understood. You\'re never forgotten.',
-        'Remembers your personal patterns and energy cycles',
-        'Tracks what truly matters to you beyond tasks and dates',
-        'Keeps up with your evolving goals and changing priorities'
-      ],
       demoText: 'I noticed you always feel most creative in the mornings but have been scheduling brainstorming sessions in the afternoon. Want me to block your mornings for deep work instead?'
     },
     {
       id: 'proactive-intelligence',
       title: 'Proactive Intelligence',
       subtitle: 'Knows What You Need Before You Ask',
-      description: 'GoodFella notices what you don\'t say out loud. From stress patterns to calendar chaos, it steps in early and helps you stay ahead.',
+      description: 'GoodFella detects stress from your behavior and health, takes the first step so you don’t have to, and recommends plans and places that match your mood and energy. It helps you recharge, stay ahead, and never fall behind.',
       icon: Target,
       gradient: 'from-purple-500 to-pink-500',
-      benefits: [
-        'Detects stress from patterns in your behavior and health',
-        'Takes the first step so you don\'t have to',
-        'Recommends spots that match your mood and energy',
-        'Plans that help you recharge without falling behind'
-      ],
       demoText: 'I noticed you seem stressed today and have back-to-back meetings. I found a quiet café nearby and moved your 3pm to tomorrow so you can decompress.'
     },
     {
       id: 'agent-lazarus',
       title: 'Agent Lazarus',
       subtitle: 'Ensures You\'re Never Truly Alone',
-      description: 'Agent Lazarus works invisibly to monitor your stress and proactively tries to help you. If after multiple attempts it fails to calm you, it reaches out to your friends autonomously and nudges them to reach out to you.',
+      description: 'Agent Lazarus monitors your mental health in the background, reaches out when it senses you need support, and connects you with a trusted friend when it matters most. It makes sure someone is always in your corner, and all health monitoring happens locally on your device.',
       icon: Heart,
       gradient: 'from-red-500 to-orange-500',
-      benefits: [
-        'Monitors your mental health in the background',
-        'Reaches out when it senses you need support',
-        'Connects you with a trusted friend when it matters most',
-        'Makes sure someone is always in your corner'
-      ],
       demoText: 'You seem down lately. Sarah always cheers you up - I noticed she\'s free tonight. Should I help you reach out?',
       privacy: true,
       humanNote: true
     },
     {
-      id: 'kodo-system',
-      title: 'Kodo',
-      subtitle: 'Your Goal-Getting Friend',
-      description: 'Kodo is that friend who\'s tough but kind who\'ll plan your day, push you to win, and also tell you when it\'s time to kick back and recover.',
+      id: 'unity-system',
+      title: 'Built to Step Back',
+      subtitle: 'Real People, Real Connection',
+      description: 'While others create AI friends, we create real moments. Our family entity coordinates meaningful family activities, shares joyful memories, facilitates real conversations, and encourages offline time—connecting your loved ones behind the scenes, then stepping back so you can build authentic relationships that actually matter.',
       icon: MessageCircle,
       gradient: 'from-green-500 to-teal-500',
-      benefits: [
-        'Adapts plans to your energy, stress levels, and weather conditions',
-        'Smart prioritization based on urgency, impact, and your natural rhythms',
-        'Learns when to push you toward goals and when you need recovery time'
-      ],
-      demoText: 'I notice you seem overwhelmed today, so I\'ve moved your presentation prep to tomorrow when your energy will be higher. Today: stress-relief gym at 4pm, then that quiet café you love for lighter tasks. You\'ll be recharged and ready.'
+      demoText: 'I noticed your mom shared a photo of her garden blooming! Instead of turning to AI for comfort, I\'ve coordinated a surprise family garden day this weekend. Your sister Sarah (who\'s been struggling with her plants) gets real gardening tips, your dad gets his family barbecue, and everyone gets real hugs, real laughter, real connection - the kind that actually heals loneliness.'
     }
   ];
+
+  // Start feature video when switching to the first feature (Remembers You)
+  useEffect(() => {
+    if (activeFeature === 0 && featureVideoRef.current) {
+      const video = featureVideoRef.current;
+      video.pause();
+      video.currentTime = 0;
+      
+      // Small delay then play the video
+      setTimeout(() => {
+        video.play().catch(console.error);
+      }, 300);
+    }
+  }, [activeFeature]);
 
   return (
     <section className="py-20 bg-black text-white" id="features">
@@ -88,8 +80,8 @@ const Features = () => {
             What Makes <span className="text-brand-amber">GoodFella</span>  Your <span className="text-brand-yellow">Friend ?</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Intelligence meets intimacy. Unlike robotic assistants, GoodFella combines persistent memory, 
-            proactive care, and emotional intelligence to be the friend you've always needed.
+            Where AI steps back, real connections step forward. We're not building another AI friend - 
+            we're making your real friendships stronger.
           </p>
         </motion.div>
 
@@ -197,18 +189,7 @@ const Features = () => {
             </p>
 
             <div className="space-y-4">
-              {features[activeFeature].benefits.map((benefit, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="flex items-center"
-                >
-                  <div className="w-2 h-2 bg-gray-400 rounded-full mr-3 flex-shrink-0"></div>
-                  <span className="text-gray-300">{benefit}</span>
-                </motion.div>
-              ))}
+              {/* Removed bullet list of benefits; now included in description above */}
             </div>
 
             {/* Privacy Note for Agent Lazarus */}
@@ -227,8 +208,103 @@ const Features = () => {
             )}
           </div>
 
-          {/* Feature Demo - Keep Colorful */}
+          {/* Feature Demo */}
           <div className="relative">
+            {activeFeature === 0 ? (
+              /* Video Demo for "Built to Remember : You" */
+              <div className="flex items-center justify-center">
+                <div className="relative max-w-sm mx-auto">
+                  <div className="relative group">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="relative aspect-square overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-blue-400/50 transition-all duration-500">
+                      <video
+                        ref={featureVideoRef}
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                      >
+                        <source src="/You.mov" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                  </div>
+                  
+                  {/* Demo Disclaimer */}
+                  <p className="text-xs text-gray-500 text-center mt-3 font-light">
+                    Real-world scenario captured during internal testing
+                  </p>
+                </div>
+              </div>
+            ) : activeFeature === 2 ? (
+              /* Image Demo for "Agent Lazarus" */
+              <div className="flex items-center justify-center">
+                <div className="relative max-w-sm mx-auto">
+                  <div className="relative group">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="relative aspect-square overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-red-400/50 transition-all duration-500">
+                      <img
+                        src="/AL.png"
+                        alt="Agent Lazarus monitoring and care system"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Demo Disclaimer */}
+                  <p className="text-xs text-gray-500 text-center mt-3 font-light">
+                    Real-world scenario captured during internal testing
+                  </p>
+                </div>
+              </div>
+            ) : activeFeature === 1 ? (
+              /* Image Demo for "Proactive Intelligence" */
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 shadow-2xl border border-gray-700">
+                <div className="bg-gray-900 rounded-2xl p-6 min-h-[300px] flex flex-col justify-center relative overflow-hidden">
+                  <div className="relative group">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="relative overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-purple-400/50 transition-all duration-500">
+                      <img
+                        src="/IMG_5785.jpg"
+                        alt="Proactive intelligence in action"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  
+
+                </div>
+                
+                {/* Demo Disclaimer */}
+                <p className="text-xs text-gray-500 text-center mt-3 font-light">
+                  Real-world scenario captured during internal testing
+                </p>
+              </div>
+            ) : activeFeature === 3 ? (
+              /* Image Demo for "Built to Step Back" */
+              <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 shadow-2xl border border-gray-700">
+                <div className="bg-gray-900 rounded-2xl p-6 min-h-[300px] flex flex-col justify-center relative overflow-hidden">
+                  <div className="relative group">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="relative overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-green-400/50 transition-all duration-500">
+                      <img
+                        src="/forget.jpg"
+                        alt="Real family connection facilitated by GoodFella"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  
+
+                </div>
+                
+                {/* Demo Disclaimer */}
+                <p className="text-xs text-gray-500 text-center mt-3 font-light">
+                  Real-world scenario captured during internal testing
+                </p>
+              </div>
+            ) : (
+              /* Chat Demo for other features */
             <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-6 shadow-2xl border border-gray-700">
               <div className="bg-gray-900 rounded-2xl p-6 min-h-[300px] flex flex-col justify-center relative overflow-hidden">
                 
@@ -256,16 +332,13 @@ const Features = () => {
                   </div>
                 </div>
 
-                {/* Demo badge */}
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-brand-amber to-brand-yellow p-0.5 rounded-full">
-                  <div className="bg-gray-900 px-3 py-1 rounded-full text-xs text-white">
-                    BETA PREVIEW
-                  </div>
-                </div>
+
               </div>
             </div>
+            )}
 
-            {/* Floating elements - Keep Colorful */}
+            {/* Floating elements - Only for chat demos */}
+            {activeFeature !== 0 && activeFeature !== 1 && activeFeature !== 2 && activeFeature !== 3 && (
             <motion.div
               animate={{ y: [-5, 5, -5] }}
               transition={{ duration: 3, repeat: Infinity }}
@@ -275,6 +348,7 @@ const Features = () => {
                 className: "w-5 h-5 text-white"
               })}
             </motion.div>
+            )}
           </div>
         </motion.div>
       </div>

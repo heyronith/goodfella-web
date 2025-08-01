@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Mail, CheckCircle, Smartphone } from 'lucide-react';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 
 const FinalCTA = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -8,21 +10,16 @@ const FinalCTA = () => {
   const [availableSeats, setAvailableSeats] = useState(497);
   const totalSeats = 1000;
 
-  // Track unique visitors and reduce seat count
+  // Initialize seat count on component mount
   useEffect(() => {
-    const hasVisited = localStorage.getItem('goodfella-visitor');
     const currentSeats = localStorage.getItem('goodfella-seats');
     
     if (currentSeats) {
       setAvailableSeats(parseInt(currentSeats));
-    }
-    
-    if (!hasVisited) {
-      // New unique visitor - reduce seat count
-      const newSeatCount = currentSeats ? Math.max(0, parseInt(currentSeats) - 1) : 496;
-      setAvailableSeats(newSeatCount);
-      localStorage.setItem('goodfella-visitor', 'true');
-      localStorage.setItem('goodfella-seats', newSeatCount.toString());
+    } else {
+      // Initialize with default value if not set
+      localStorage.setItem('goodfella-seats', '497');
+      setAvailableSeats(497);
     }
   }, []);
 
@@ -34,30 +31,33 @@ const FinalCTA = () => {
     const formData = new FormData(form);
     
     // Get form values
-    const firstName = formData.get('entry.1562131595');
-    const lastName = formData.get('entry.1492891315');
-    const email = formData.get('entry.1955187390');
+    const firstName = formData.get('firstName');
+    const lastName = formData.get('lastName');
+    const email = formData.get('email');
     
-    console.log('Submitting to Google Forms:', { firstName, lastName, email });
+    console.log('Submitting to Firestore:', { firstName, lastName, email });
     
     try {
-      // Create URLSearchParams for better compatibility
-      const params = new URLSearchParams();
-      params.append('entry.1562131595', firstName as string);
-      params.append('entry.1492891315', lastName as string);
-      params.append('entry.1955187390', email as string);
+      console.log('Attempting to submit to Firestore...');
+      console.log('Database instance:', db);
       
-      // Submit to Google Forms using URLSearchParams
-      await fetch('https://docs.google.com/forms/d/e/1FAIpQLSe41iyv0bbKFSprstzJqTRhVsxyvqEPLNqJrXtXYPsLywMSFA/formResponse', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: params.toString()
+      // Submit to Firestore
+      const docRef = await addDoc(collection(db, 'submissions'), {
+        firstName: firstName as string,
+        lastName: lastName as string,
+        email: email as string,
+        timestamp: serverTimestamp(),
+        userAgent: navigator.userAgent,
+        source: 'waitlist-form'
       });
 
-      console.log('Form submitted successfully');
+      console.log('Document written with ID: ', docRef.id);
+      
+      // Reduce seat count on successful submission
+      const currentSeats = parseInt(localStorage.getItem('goodfella-seats') || '497');
+      const newSeatCount = Math.max(0, currentSeats - 1);
+      setAvailableSeats(newSeatCount);
+      localStorage.setItem('goodfella-seats', newSeatCount.toString());
       
       // Show success message
       setIsSubmitted(true);
@@ -69,13 +69,15 @@ const FinalCTA = () => {
       }, 10000);
       
     } catch (error) {
-      console.error('Error submitting form:', error);
-      // Still show success since Google Forms might have received it
-      setIsSubmitted(true);
-      form.reset();
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 10000);
+      console.error('Detailed error submitting form:', error);
+      const err = error as any;
+      console.error('Error name:', err.name);
+      console.error('Error message:', err.message);
+      console.error('Error code:', err.code);
+      
+      // Show specific error to user for debugging
+      const errorMessage = err.message || 'Unknown error occurred';
+      alert(`Error submitting form: ${errorMessage}\n\nCheck the console for more details.`);
     } finally {
       setIsLoading(false);
     }
@@ -102,11 +104,7 @@ const FinalCTA = () => {
             <span className="text-brand-amber">Goodfella</span>{' '}
           </h2>
           
-          <p className="text-xl sm:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-            You don't have to explain yourself.<br />
-            GoodFella already knows. keeps up, checks in, and shows up<br />
-            <span className="text-white">Yes, that's right Like your real friend.</span>
-          </p>
+
 
           {/* Waitlist Form - Keep Colorful */}
           <motion.div
@@ -119,15 +117,13 @@ const FinalCTA = () => {
             {!isSubmitted ? (
               <form 
                 onSubmit={handleSubmit} 
-                action="https://docs.google.com/forms/d/e/1FAIpQLSe41iyv0bbKFSprstzJqTRhVsxyvqEPLNqJrXtXYPsLywMSFA/formResponse"
-                method="POST"
                 className="space-y-4"
               >
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="relative">
                     <input
                       type="text"
-                      name="entry.1562131595"
+                      name="firstName"
                       placeholder="First Name"
                       required
                       className="w-full px-6 py-4 bg-white bg-opacity-10 border border-gray-500 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-brand-amber focus:shadow-lg transition-all duration-300"
@@ -136,7 +132,7 @@ const FinalCTA = () => {
                   <div className="relative">
                     <input
                       type="text"
-                      name="entry.1492891315"
+                      name="lastName"
                       placeholder="Last Name"
                       required
                       className="w-full px-6 py-4 bg-white bg-opacity-10 border border-gray-500 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-brand-amber focus:shadow-lg transition-all duration-300"
@@ -146,7 +142,7 @@ const FinalCTA = () => {
                 <div className="relative">
                   <input
                     type="email"
-                    name="entry.1955187390"
+                    name="email"
                     placeholder="Enter your email"
                     required
                     className="w-full px-6 py-4 bg-white bg-opacity-10 border border-gray-500 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-brand-amber focus:shadow-lg transition-all duration-300"
