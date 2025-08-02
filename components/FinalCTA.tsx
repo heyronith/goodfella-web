@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Mail, CheckCircle, Smartphone } from 'lucide-react';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, getDoc, setDoc, updateDoc, increment, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
 const FinalCTA = () => {
@@ -10,17 +10,38 @@ const FinalCTA = () => {
   const [availableSeats, setAvailableSeats] = useState(497);
   const totalSeats = 1000;
 
-  // Initialize seat count on component mount
+  // Initialize seat count and set up real-time listener
   useEffect(() => {
-    const currentSeats = localStorage.getItem('goodfella-seats');
+    const seatCountRef = doc(db, 'counters', 'seatCount');
     
-    if (currentSeats) {
-      setAvailableSeats(parseInt(currentSeats));
-    } else {
-      // Initialize with default value if not set
-      localStorage.setItem('goodfella-seats', '497');
+    // Set up real-time listener for seat count
+    const unsubscribe = onSnapshot(seatCountRef, async (docSnap) => {
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setAvailableSeats(data.availableSeats || 497);
+      } else {
+        // Initialize the counter document if it doesn't exist
+        console.log('Initializing seat counter in Firestore...');
+        try {
+          await setDoc(seatCountRef, {
+            availableSeats: 497,
+            totalSeats: 1000,
+            lastUpdated: serverTimestamp()
+          });
+          setAvailableSeats(497);
+        } catch (error) {
+          console.error('Error initializing seat counter:', error);
+          setAvailableSeats(497);
+        }
+      }
+    }, (error) => {
+      console.error('Error listening to seat count:', error);
+      // Fallback to default value if real-time updates fail
       setAvailableSeats(497);
-    }
+    });
+
+    // Cleanup listener on component unmount
+    return () => unsubscribe();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -53,11 +74,14 @@ const FinalCTA = () => {
 
       console.log('Document written with ID: ', docRef.id);
       
-      // Reduce seat count on successful submission
-      const currentSeats = parseInt(localStorage.getItem('goodfella-seats') || '497');
-      const newSeatCount = Math.max(0, currentSeats - 1);
-      setAvailableSeats(newSeatCount);
-      localStorage.setItem('goodfella-seats', newSeatCount.toString());
+      // Reduce seat count in Firestore (atomic operation)
+      const seatCountRef = doc(db, 'counters', 'seatCount');
+      await updateDoc(seatCountRef, {
+        availableSeats: increment(-1),
+        lastUpdated: serverTimestamp()
+      });
+      
+      console.log('Seat count decremented in Firestore');
       
       // Show success message
       setIsSubmitted(true);
