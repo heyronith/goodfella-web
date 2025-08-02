@@ -61,6 +61,10 @@ const FinalCTA = () => {
     try {
       console.log('Attempting to submit to Firestore...');
       console.log('Database instance:', db);
+      console.log('Environment check:', {
+        apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY ? 'Set' : 'Missing',
+        projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ? 'Set' : 'Missing'
+      });
       
       // Submit to Firestore
       const docRef = await addDoc(collection(db, 'submissions'), {
@@ -98,10 +102,23 @@ const FinalCTA = () => {
       console.error('Error name:', err.name);
       console.error('Error message:', err.message);
       console.error('Error code:', err.code);
+      console.error('Error stack:', err.stack);
       
       // Show specific error to user for debugging
-      const errorMessage = err.message || 'Unknown error occurred';
-      alert(`Error submitting form: ${errorMessage}\n\nCheck the console for more details.`);
+      let errorMessage = err.message || 'Unknown error occurred';
+      let userFriendlyMessage = 'Unable to submit form. ';
+      
+      if (err.code === 'auth/invalid-api-key') {
+        userFriendlyMessage += 'Configuration issue detected.';
+      } else if (err.code === 'permission-denied') {
+        userFriendlyMessage += 'Permission denied. Please try again.';
+      } else if (err.message?.includes('network')) {
+        userFriendlyMessage += 'Network error. Please check your connection.';
+      } else {
+        userFriendlyMessage += 'Please try again or contact support.';
+      }
+      
+      alert(`${userFriendlyMessage}\n\nTechnical details: ${errorMessage}`);
     } finally {
       setIsLoading(false);
     }
