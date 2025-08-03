@@ -261,7 +261,7 @@ const Features = () => {
                   <div className="relative group">
                     <div className="absolute -inset-[2px] bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                     <img
-                      src="/IMG_5785.jpg"
+                      src="/demo/demo2.jpg"
                       alt="Proactive intelligence in action"
                       className="relative w-full h-auto max-w-sm rounded-xl shadow-2xl transition-all duration-500"
                     />
