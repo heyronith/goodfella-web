@@ -87,6 +87,29 @@ const FinalCTA = () => {
       
       console.log('Seat count decremented in Firestore');
       
+      // Send welcome email
+      try {
+        const emailResponse = await fetch('/api/send-welcome-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            firstName: firstName as string,
+            lastName: lastName as string,
+            email: email as string,
+          }),
+        });
+        
+        if (emailResponse.ok) {
+          console.log('Welcome email sent successfully');
+        } else {
+          console.error('Failed to send welcome email');
+        }
+      } catch (emailError) {
+        console.error('Error sending welcome email:', emailError);
+      }
+      
       // Show success message
       setIsSubmitted(true);
       form.reset();

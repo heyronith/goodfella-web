@@ -207,23 +207,17 @@ const Features = () => {
           {/* Feature Demo */}
           <div className="relative">
             {activeFeature === 0 ? (
-              /* Video Demo for "Built to Remember : You" */
+              /* Image Demo for "Built to Remember : You" */
               <div className="flex items-center justify-center">
                 <div className="relative max-w-sm mx-auto">
                   <div className="relative group">
                     <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                     <div className="relative aspect-square overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-blue-400/50 transition-all duration-500">
-                      <video
-                        ref={featureVideoRef}
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover"
-                      >
-                        <source src="/You.MOV" type="video/quicktime" />
-                        <source src="/You.MOV" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
+                        <img
+                          src="/demo/buildto.png"
+                          alt="Learning Progress Dashboard - Built to Remember You"
+                          className="w-full h-full object-cover"
+                        />
                     </div>
                   </div>
                   
@@ -240,11 +234,11 @@ const Features = () => {
                   <div className="relative group">
                     <div className="absolute -inset-2 bg-gradient-to-r from-red-400 via-orange-400 to-yellow-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                     <div className="relative aspect-square overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-red-400/50 transition-all duration-500">
-                      <img
-                        src="/AL.png"
-                        alt="Agent Lazarus monitoring and care system"
-                        className="w-full h-full object-cover"
-                      />
+                       <img
+                         src="/demo/Untitled.gif"
+                         alt="Agent Lazarus monitoring and care system"
+                         className="w-full h-full object-cover"
+                       />
                     </div>
                   </div>
                   
@@ -278,12 +272,12 @@ const Features = () => {
               <div className="flex items-center justify-center">
                 <div className="relative max-w-sm mx-auto">
                   <div className="relative group">
-                    <div className="absolute -inset-2 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-                    <div className="relative overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-green-400/50 transition-all duration-500">
+                    <div className="absolute -inset-2 bg-gradient-to-r from-green-400 via-teal-400 to-emerald-400 rounded-2xl blur-lg opacity-0 group-hover:opacity-0 transition-opacity duration-500"></div>
+                    <div className="relative aspect-square overflow-hidden rounded-xl shadow-2xl bg-black/0 border border-transparent group-hover:border-transparent transition-all duration-500">
                       <img
-                        src="/forget.jpg"
+                        src="/demo/stepback.gif"
                         alt="Real family connection facilitated by GoodFella"
-                        className="w-full h-auto max-w-sm"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                   </div>
