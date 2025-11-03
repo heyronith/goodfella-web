@@ -14,30 +14,30 @@ const Features = () => {
   const features = [
     {
       id: 'memories-everything',
-      title: 'Built to Remember : You',
-      subtitle: 'Like a friend who remembers what you forgot',
-      description: 'GoodFella remembers the you behind it all. It knows your rhythm, your goals, your moods, and keeps up with your evolving priorities. You’re seen, understood, and never forgotten. Your personal patterns, energy cycles, and what truly matters to you are always top of mind.',
+      title: 'Deep Social Understanding',
+      subtitle: 'Knows your social patterns and emotional rhythms',
+      description: 'GoodFella learns your social preferences, energy patterns, and emotional needs. It understands when you thrive in groups versus when you need quiet time, recognizes your stress signals, and adapts to support your social wellbeing. Your mental health patterns, social energy cycles, and what brings you joy are always understood.',
       icon: Brain,
       gradient: 'from-blue-500 to-cyan-500',
-      demoText: 'I noticed you always feel most creative in the mornings but have been scheduling brainstorming sessions in the afternoon. Want me to block your mornings for deep work instead?'
+      demoText: 'I noticed you feel most energized after morning coffee with friends, but you\'ve been skipping those lately. Want me to help you reconnect with Sarah for your usual Tuesday coffee?'
     },
     {
       id: 'proactive-intelligence',
       title: 'Proactive Intelligence',
-      subtitle: 'Knows What You Need Before You Ask',
-      description: 'GoodFella doesn\'t wait for you to ask, it reads your rhythm, senses your stress, and steps in to help you before you even know you need help. Because the best kind of intelligence isn\'t the one that answers questions, but the one that prevents them from ever being asked.',
+      subtitle: 'Knows what you need before you ask',
+      description: 'GoodFella doesn\'t wait for you to ask for help. It reads your social energy, senses when you\'re feeling isolated or overwhelmed, and proactively suggests connections or support before you even realize you need it. Because the best social wellbeing support isn\'t reactive—it\'s preventive.',
       icon: Target,
       gradient: 'from-purple-500 to-pink-500',
-      demoText: 'I noticed you seem stressed today and have back-to-back meetings. I found a quiet café nearby and moved your 3pm to tomorrow so you can decompress.'
+      demoText: 'I noticed you\'ve been declining social invites lately and seem more withdrawn. I found a small group meditation session tonight that might help you reconnect with yourself. Want me to help you reach out to your support network too?'
     },
     {
       id: 'agent-lazarus',
       title: 'Agent Lazarus',
-      subtitle: 'Ensures You\'re Never Truly Alone',
-      description: 'Agent Lazarus detects the emotional toll when you\'re struggling and steps in to help. But when it knows you need more than it can give, it quietly reaches out to the people who love you most. Because the best technology knows when to step aside and let human love take over.',
+      subtitle: 'Your wellbeing guardian when you need it most',
+      description: 'GoodFella\'s social safety net recognizes when you\'re struggling emotionally or socially isolated. It provides gentle support and, when needed, helps connect you with your trusted network. Because the best social wellbeing technology knows when to step in with care and when to facilitate human connection.',
       icon: Heart,
       gradient: 'from-red-500 to-orange-500',
-      demoText: 'You seem down lately. Sarah always cheers you up - I noticed she\'s free tonight. Should I help you reach out?',
+      demoText: 'I\'ve noticed you\'ve been more quiet lately and skipping your usual social activities. Your sister Sarah always knows how to lift your spirits - she\'s free tonight. Should I help you reach out?',
       privacy: true,
       humanNote: true
     },
@@ -45,10 +45,10 @@ const Features = () => {
       id: 'unity-system',
       title: 'Built to Step Back',
       subtitle: 'Real People, Real Connection',
-              description: 'Picture a friend who sets up the perfect moment, then slips away to let the magic unfold. That\'s GoodFella—crafting opportunities for real connection, then stepping back so authentic relationships can shine. Because we believe the best technology isn\'t the one that takes center stage, but the one that helps human connections steal the show.',
+      description: 'GoodFella creates opportunities for authentic human connection, then gracefully steps back to let real relationships flourish. It understands that social wellbeing comes from genuine human bonds, not AI interactions. The best social technology doesn\'t replace human connection—it nurtures and facilitates it.',
       icon: MessageCircle,
       gradient: 'from-green-500 to-teal-500',
-      demoText: 'I noticed your mom shared a photo of her garden blooming! Instead of turning to AI for comfort, I\'ve coordinated a surprise family garden day this weekend. Your sister Sarah (who\'s been struggling with her plants) gets real gardening tips, your dad gets his family barbecue, and everyone gets real hugs, real laughter, real connection - the kind that actually heals loneliness.'
+      demoText: 'I noticed your mom shared a photo of her garden blooming! I\'ve coordinated a surprise family garden day this weekend. Your sister Sarah (who\'s been struggling with her plants) gets real gardening tips, your dad gets his family barbecue, and everyone gets real hugs, real laughter, real connection - the kind that actually heals loneliness and builds lasting bonds.'
     }
   ];
 
@@ -77,7 +77,7 @@ const Features = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">
-            What Makes <span className="text-brand-amber">GoodFella</span>  Your <span className="text-brand-yellow">Friend ?</span>
+            How can <span className="text-brand-amber">GoodFella</span> help <span className="text-brand-yellow">you</span>?
           </h2>
         </motion.div>
 
@@ -253,12 +253,14 @@ const Features = () => {
               <div className="flex items-center justify-center">
                 <div className="relative max-w-sm mx-auto">
                   <div className="relative group">
-                    <div className="absolute -inset-[2px] bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 rounded-xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
-                    <img
-                      src="/demo/demo2.jpg"
-                      alt="Proactive intelligence in action"
-                      className="relative w-full h-auto max-w-sm rounded-xl shadow-2xl transition-all duration-500"
-                    />
+                    <div className="absolute -inset-2 bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                    <div className="relative aspect-square overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-purple-400/50 transition-all duration-500">
+                      <img
+                        src="/demo/1102.gif"
+                        alt="Proactive intelligence in action"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
                   </div>
                   
                   {/* Demo Disclaimer */}
@@ -300,7 +302,7 @@ const Features = () => {
                   </div>
                   <div>
                     <div className="text-brand-amber font-semibold">GoodFella</div>
-                    <div className="text-xs text-gray-400">Your AI Friend</div>
+                    <div className="text-xs text-gray-400">Your Social Wellbeing Companion</div>
                   </div>
                 </div>
 

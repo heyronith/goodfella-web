@@ -14,7 +14,7 @@ const Hero = () => {
   const controls = useAnimation();
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
-  const friendshipText = 'Friendship.';
+  const belongingText = 'Belonging.';
 
   // Intro animation sequence
   useEffect(() => {
@@ -31,14 +31,14 @@ const Hero = () => {
     sequence();
   }, []);
 
-  // Typing animation for "Friendship"
+  // Typing animation for "Belonging"
   useEffect(() => {
     if (!showTyping) return;
     
     let currentIndex = 0;
     const typingInterval = setInterval(() => {
-      if (currentIndex <= friendshipText.length) {
-        setTypedText(friendshipText.slice(0, currentIndex));
+      if (currentIndex <= belongingText.length) {
+        setTypedText(belongingText.slice(0, currentIndex));
         currentIndex++;
       } else {
         clearInterval(typingInterval);
@@ -51,7 +51,7 @@ const Hero = () => {
     }, 100); // Type each character every 100ms
 
     return () => clearInterval(typingInterval);
-  }, [showTyping, friendshipText]);
+  }, [showTyping, belongingText]);
 
       // Cursor blinking animation
   useEffect(() => {
@@ -118,7 +118,7 @@ const Hero = () => {
           {/* Left Content */}
           <div className="text-center lg:text-left">
             {/* Custom Animated Main Heading */}
-            <div className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight min-h-[1.2em]">
+            <div className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight py-4">
               {showInitialTitle && (
                 <>
                   Welcome to the Future of{' '}
@@ -127,13 +127,13 @@ const Hero = () => {
                       _
                     </span>
                   )}
-                                        {showTyping && (
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 inline-block relative">
+                  {showTyping && (
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 inline-block relative pb-1">
                       {typedText}
                       {showCursor && !animationComplete && (
                         <span className="text-white">_</span>
                       )}
-                </span>
+                    </span>
                   )}
                 </>
               )}
@@ -147,9 +147,7 @@ const Hero = () => {
                 transition={{ duration: 0.8 }}
                 className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed font-light"
             >
-                A true friend is proactive, brings people closer together, and is always there when you need them.
-                <br />
-                We're excited to put that kind of friendship right in the palm of your hand.
+                GoodFella understands your rhythms, anticipates your needs, ensures you're never alone, and facilitates genuine human connections. We're excited to put that kind of belonging right in the palm of your hand.
             </motion.p>
             )}
             

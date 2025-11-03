@@ -13,75 +13,77 @@ const RunningText = () => {
       </div>
 
       {/* Main content area */}
-      <div className="relative z-10 flex items-center justify-center min-h-[120px]">
-        <div className="text-center">
+      <div className="relative z-10 flex items-center justify-center min-h-[120px] px-4">
+        <div className="text-center max-w-7xl mx-auto w-full">
           
-          {/* Moving text with horizontal scroll animation */}
-          <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.9 }}
-            animate={{ 
-              opacity: 1, 
-              y: 0, 
-              scale: 1,
-            }}
-            transition={{ 
-              opacity: { duration: 1.2, delay: 0.3 },
-              y: { duration: 1.2, delay: 0.3 },
-              scale: { duration: 1.2, delay: 0.3 }
-            }}
-            className="whitespace-nowrap text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-wider text-gray-300 overflow-hidden"
-          >
+          {/* Moving text with proper containment */}
+          <div className="overflow-hidden w-full">
             <motion.div
+              initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ 
-                x: [0, -100, 0],
+                opacity: 1, 
+                y: 0, 
+                scale: 1,
               }}
               transition={{ 
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear"
+                opacity: { duration: 1.2, delay: 0.3 },
+                y: { duration: 1.2, delay: 0.3 },
+                scale: { duration: 1.2, delay: 0.3 }
               }}
-              className="inline-block"
+              className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-wider text-gray-300 whitespace-nowrap"
             >
-            <motion.span 
-              className="font-silkscreen inline-block"
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{ 
-                opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-              }}
-            >
-              AI's <span className="text-brand-amber">Brain</span>
-            </motion.span>
-            
-            <motion.span 
-              className="mx-2 sm:mx-4 text-gray-500 inline-block"
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{ 
-                opacity: { duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
-              }}
-            >
-              ,
-            </motion.span>
-            
-            <motion.span 
-              className="font-barriecito inline-block"
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: [0.7, 1, 0.7],
-              }}
-              transition={{ 
-                opacity: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }
-              }}
-            >
-              Human's <span className="text-brand-yellow">Heart</span>.
-            </motion.span>
+              <motion.div
+                animate={{ 
+                  x: [0, -50, 0],
+                }}
+                transition={{ 
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="inline-block"
+              >
+                <motion.span 
+                  className="font-silkscreen inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: [0.7, 1, 0.7],
+                  }}
+                  transition={{ 
+                    opacity: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  }}
+                >
+                  AI's <span className="text-brand-amber">Brain</span>
+                </motion.span>
+                
+                <motion.span 
+                  className="mx-2 sm:mx-4 text-gray-500 inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: [0.5, 1, 0.5],
+                  }}
+                  transition={{ 
+                    opacity: { duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+                  }}
+                >
+                  ,
+                </motion.span>
+                
+                <motion.span 
+                  className="font-barriecito inline-block"
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: [0.7, 1, 0.7],
+                  }}
+                  transition={{ 
+                    opacity: { duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                  }}
+                >
+                  Human's <span className="text-brand-yellow">Heart</span>.
+                </motion.span>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
 
           {/* Floating dots pattern with enhanced animation */}
           <div className="absolute inset-0 pointer-events-none">

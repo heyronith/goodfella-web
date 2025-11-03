@@ -14,11 +14,11 @@ export default function Home() {
         <title>GoodFella</title>
         <meta 
           name="description" 
-          content="Join the beta! Meet GoodFella, your personal AI life partner who learns your personality, plans your perfect day, and checks in when you're not okay. Sign up for early access." 
+          content="Join the beta! Meet GoodFella, your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health through AI-powered social intelligence." 
         />
         <meta 
           name="keywords" 
-          content="AI assistant, personal AI, life partner, emotional AI, contextual intelligence, mental health, life organization, GoodFella, beta testing" 
+          content="social wellbeing, AI companion, mental health support, social connection, emotional intelligence, loneliness prevention, social AI, wellbeing technology, GoodFella, beta testing" 
         />
         <meta name="author" content="GoodFella" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,20 +26,20 @@ export default function Home() {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://goodfella.ai" />
-        <meta property="og:title" content="GoodFella - New age of friendship awaits" />
+        <meta property="og:title" content="GoodFella - Your Social Wellbeing Companion" />
         <meta 
           property="og:description" 
-          content="Join the beta! Meet GoodFella, your personal AI life partner who learns your personality, plans your perfect day, and checks in when you're not okay." 
+          content="Join the beta! Meet GoodFella, your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health." 
         />
         <meta property="og:image" content="https://goodfella.ai/app-icon.png" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://goodfella.ai" />
-        <meta property="twitter:title" content="GoodFella - New age of friendship awaits" />
+        <meta property="twitter:title" content="GoodFella - Your Social Wellbeing Companion" />
         <meta 
           property="twitter:description" 
-          content="Join the beta! Meet GoodFella, your personal AI life partner who learns your personality, plans your perfect day, and checks in when you're not okay." 
+          content="Join the beta! Meet GoodFella, your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health." 
         />
         <meta property="twitter:image" content="https://goodfella.ai/app-icon.png" />
 
@@ -61,7 +61,7 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               "name": "GoodFella",
-              "description": "Your personal AI life partner who learns your personality, plans your perfect day, and checks in when you're not okay.",
+              "description": "Your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health through AI-powered social intelligence.",
               "url": "https://goodfella.ai",
               "operatingSystem": "Web, iOS, Android",
               "offers": {

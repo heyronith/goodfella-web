@@ -8,7 +8,7 @@ const FinalCTA = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [availableSeats, setAvailableSeats] = useState(497);
-  const totalSeats = 1000;
+  const totalSeats = 2000;
 
   // Initialize seat count and set up real-time listener
   useEffect(() => {
@@ -25,7 +25,7 @@ const FinalCTA = () => {
         try {
           await setDoc(seatCountRef, {
             availableSeats: 497,
-            totalSeats: 1000,
+            totalSeats: 2000,
             lastUpdated: serverTimestamp()
           });
           setAvailableSeats(497);
@@ -165,7 +165,7 @@ const FinalCTA = () => {
         >
           <h2 className="text-4xl sm:text-6xl font-bold mb-6 leading-tight text-white">
             Meet your{' '}
-            <span className="text-brand-amber">Goodfella</span>{' '}
+            <span className="text-brand-amber">GoodFella</span>
           </h2>
           
 
@@ -231,10 +231,10 @@ const FinalCTA = () => {
                   <span className="text-2xl">🎉</span>
                 </div>
                 <h3 className="text-xl font-bold text-black mb-2">
-                  Welcome to the future!
+                  Welcome to better social wellbeing!
                 </h3>
                 <p className="text-black font-semibold">
-                  You're now part of something bigger.
+                  You're now part of a community focused on meaningful connections.
                 </p>
                 <p className="text-black/80 text-sm mt-2">
                   We'll be in touch soon with your early access details.
