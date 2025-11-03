@@ -214,7 +214,7 @@ const Features = () => {
                     <div className="absolute -inset-2 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                     <div className="relative aspect-square overflow-hidden rounded-xl shadow-2xl bg-black border border-gray-800 group-hover:border-blue-400/50 transition-all duration-500">
                         <img
-                          src="/demo/buildto.png"
+                          src="/demo/Untitled%20design.gif"
                           alt="Learning Progress Dashboard - Built to Remember You"
                           className="w-full h-full object-cover"
                         />
