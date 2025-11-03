@@ -53,6 +53,12 @@ export default function Home() {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
+        {/* Preload demo images for faster loading */}
+        <link rel="preload" href="/demo/Untitled%20design.gif" as="image" />
+        <link rel="preload" href="/demo/1102.gif" as="image" />
+        <link rel="preload" href="/demo/Untitled.gif" as="image" />
+        <link rel="preload" href="/demo/stepback.gif" as="image" />
+
         {/* Structured Data */}
         <script
           type="application/ld+json"

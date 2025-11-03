@@ -52,6 +52,21 @@ const Features = () => {
     }
   ];
 
+  // Preload all demo images for faster switching
+  useEffect(() => {
+    const preloadImages = [
+      '/demo/Untitled%20design.gif',
+      '/demo/1102.gif',
+      '/demo/Untitled.gif',
+      '/demo/stepback.gif'
+    ];
+
+    preloadImages.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   // Start feature video when switching to the first feature (Remembers You)
   useEffect(() => {
     if (activeFeature === 0 && featureVideoRef.current) {
@@ -217,6 +232,8 @@ const Features = () => {
                           src="/demo/Untitled%20design.gif"
                           alt="Learning Progress Dashboard - Built to Remember You"
                           className="w-full h-full object-cover"
+                          loading="eager"
+                          fetchPriority="high"
                         />
                     </div>
                   </div>
@@ -238,6 +255,7 @@ const Features = () => {
                          src="/demo/Untitled.gif"
                          alt="Agent Lazarus monitoring and care system"
                          className="w-full h-full object-cover"
+                         loading="lazy"
                        />
                     </div>
                   </div>
@@ -259,6 +277,7 @@ const Features = () => {
                         src="/demo/1102.gif"
                         alt="Proactive intelligence in action"
                         className="w-full h-full object-cover"
+                        loading="lazy"
                       />
                     </div>
                   </div>
@@ -280,6 +299,7 @@ const Features = () => {
                         src="/demo/stepback.gif"
                         alt="Real family connection facilitated by GoodFella"
                         className="w-full h-full object-contain"
+                        loading="lazy"
                       />
                     </div>
                   </div>
