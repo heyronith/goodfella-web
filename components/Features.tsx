@@ -19,25 +19,25 @@ const Features = () => {
       description: 'GoodFella learns your social preferences, energy patterns, and emotional needs. It understands when you thrive in groups versus when you need quiet time, recognizes your stress signals, and adapts to support your social wellbeing. Your mental health patterns, social energy cycles, and what brings you joy are always understood.',
       icon: Brain,
       gradient: 'from-blue-500 to-cyan-500',
-      demoText: 'I noticed you feel most energized after morning coffee with friends, but you\'ve been skipping those lately. Want me to help you reconnect with Sarah for your usual Tuesday coffee?'
+      demoText: 'I\'ve learned that you feel most energized after morning coffee with friends, but you\'ve been skipping those lately. Based on what helps you most, I found a quiet café you love that\'s perfect for a solo recharge, or I can help you reconnect with Sarah for your usual Tuesday coffee if you\'d like.'
     },
     {
       id: 'proactive-intelligence',
       title: 'Proactive Intelligence',
       subtitle: 'Knows what you need before you ask',
-      description: 'GoodFella doesn\'t wait for you to ask for help. It reads your social energy, senses when you\'re feeling isolated or overwhelmed, and proactively suggests connections or support before you even realize you need it. Because the best social wellbeing support isn\'t reactive—it\'s preventive.',
+      description: 'GoodFella doesn\'t wait for you to ask for help. It reads your social energy, senses when you\'re feeling isolated or overwhelmed, and proactively suggests connections or support before you even realize you need it. Because the best social wellbeing support isn\'t reactive, it\'s preventive.',
       icon: Target,
       gradient: 'from-purple-500 to-pink-500',
-      demoText: 'I noticed you\'ve been declining social invites lately and seem more withdrawn. I found a small group meditation session tonight that might help you reconnect with yourself. Want me to help you reach out to your support network too?'
+      demoText: 'I noticed you\'ve been declining social invites lately and seem more withdrawn. Based on what helps you most, I found a small group meditation session tonight that might help you reconnect with yourself. If it would help, I can also help you reach out to your support network.'
     },
     {
       id: 'agent-lazarus',
       title: 'Agent Lazarus',
       subtitle: 'Your wellbeing guardian when you need it most',
-      description: 'GoodFella\'s social safety net recognizes when you\'re struggling emotionally or socially isolated. It provides gentle support and, when needed, helps connect you with your trusted network. Because the best social wellbeing technology knows when to step in with care and when to facilitate human connection.',
+      description: 'GoodFella\'s wellbeing guardian recognizes when you\'re struggling emotionally or socially isolated. It proactively provides personalized support based on everything it understands about you: your patterns, what helps you most, and your unique needs. If a friend is available and it\'s appropriate, GoodFella can facilitate that connection, but its understanding and proactive assistance always comes first.',
       icon: Heart,
       gradient: 'from-red-500 to-orange-500',
-      demoText: 'I\'ve noticed you\'ve been more quiet lately and skipping your usual social activities. Your sister Sarah always knows how to lift your spirits - she\'s free tonight. Should I help you reach out?',
+      demoText: 'I\'ve noticed you\'ve been more quiet lately and skipping your usual social activities. Based on what helps you most, I found that meditation session you enjoyed last month. It\'s happening tonight. If you\'d like, I can also help you reach out to Sarah, who\'s free and always knows how to lift your spirits.',
       privacy: true,
       humanNote: true
     },
@@ -45,7 +45,7 @@ const Features = () => {
       id: 'unity-system',
       title: 'Built to Step Back',
       subtitle: 'Real People, Real Connection',
-      description: 'GoodFella creates opportunities for authentic human connection, then gracefully steps back to let real relationships flourish. It understands that social wellbeing comes from genuine human bonds, not AI interactions. The best social technology doesn\'t replace human connection—it nurtures and facilitates it.',
+      description: 'GoodFella creates opportunities for authentic human connection, then gracefully steps back to let real relationships flourish. It understands that social wellbeing comes from genuine human bonds, not digital interactions. The best social technology doesn\'t replace human connection: it nurtures and facilitates it.',
       icon: MessageCircle,
       gradient: 'from-green-500 to-teal-500',
       demoText: 'I noticed your mom shared a photo of her garden blooming! I\'ve coordinated a surprise family garden day this weekend. Your sister Sarah (who\'s been struggling with her plants) gets real gardening tips, your dad gets his family barbecue, and everyone gets real hugs, real laughter, real connection - the kind that actually heals loneliness and builds lasting bonds.'
@@ -213,7 +213,7 @@ const Features = () => {
               >
                 <p className="text-xs text-gray-500 flex items-center">
                   <div className="w-1.5 h-1.5 bg-brand-amber rounded-full mr-2 flex-shrink-0"></div>
-                  All health monitoring happens locally on your device. Personal data never leaves your control.
+                  Your personal data is protected. We're working toward 100% on-device processing for complete privacy.
                 </p>
               </motion.div>
             )}
@@ -321,7 +321,7 @@ const Features = () => {
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-brand-amber font-semibold">GoodFella</div>
+                    <div className="text-brand-amber font-semibold">Lex</div>
                     <div className="text-xs text-gray-400">Your Social Wellbeing Companion</div>
                   </div>
                 </div>

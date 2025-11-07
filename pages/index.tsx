@@ -4,6 +4,7 @@ import Navigation from '../components/Navigation';
 import Hero from '../components/Hero';
 import RunningText from '../components/RunningText';
 import Features from '../components/Features';
+import FAQ from '../components/FAQ';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
 
@@ -14,11 +15,11 @@ export default function Home() {
         <title>GoodFella</title>
         <meta 
           name="description" 
-          content="Join the beta! Meet GoodFella, your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health through AI-powered social intelligence." 
+          content="Join the beta! Meet GoodFella, your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health through intelligent social awareness." 
         />
         <meta 
           name="keywords" 
-          content="social wellbeing, AI companion, mental health support, social connection, emotional intelligence, loneliness prevention, social AI, wellbeing technology, GoodFella, beta testing" 
+          content="social wellbeing, intelligent companion, mental health support, social connection, emotional intelligence, loneliness prevention, social technology, wellbeing technology, GoodFella, beta testing" 
         />
         <meta name="author" content="GoodFella" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -67,7 +68,7 @@ export default function Home() {
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
               "name": "GoodFella",
-              "description": "Your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health through AI-powered social intelligence.",
+              "description": "Your social wellbeing companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health through intelligent social awareness.",
               "url": "https://goodfella.ai",
               "operatingSystem": "Web, iOS, Android",
               "offers": {
@@ -87,6 +88,7 @@ export default function Home() {
         <Features />
         <RunningText />
         <FinalCTA />
+        <FAQ />
         <Footer />
       </main>
     </>

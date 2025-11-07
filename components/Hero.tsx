@@ -14,7 +14,7 @@ const Hero = () => {
   const controls = useAnimation();
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
-  const belongingText = 'Belonging.';
+  const wellbeingText = 'Wellbeing.';
 
   // Intro animation sequence
   useEffect(() => {
@@ -31,14 +31,14 @@ const Hero = () => {
     sequence();
   }, []);
 
-  // Typing animation for "Belonging"
+  // Typing animation for "Wellbeing"
   useEffect(() => {
     if (!showTyping) return;
     
     let currentIndex = 0;
     const typingInterval = setInterval(() => {
-      if (currentIndex <= belongingText.length) {
-        setTypedText(belongingText.slice(0, currentIndex));
+      if (currentIndex <= wellbeingText.length) {
+        setTypedText(wellbeingText.slice(0, currentIndex));
         currentIndex++;
       } else {
         clearInterval(typingInterval);
@@ -51,7 +51,7 @@ const Hero = () => {
     }, 100); // Type each character every 100ms
 
     return () => clearInterval(typingInterval);
-  }, [showTyping, belongingText]);
+  }, [showTyping, wellbeingText]);
 
       // Cursor blinking animation
   useEffect(() => {
@@ -141,14 +141,15 @@ const Hero = () => {
             
             {/* Description - only show after animation is complete */}
             {animationComplete && (
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed font-light"
             >
-                GoodFella understands your rhythms, anticipates your needs, ensures you're never alone, and facilitates genuine human connections. We're excited to put that kind of belonging right in the palm of your hand.
-            </motion.p>
+                <p>Knowing you deeply. Helping you proactively. Connecting you with people when it matters.</p>
+                <p className="mt-1">All without you having to explain a thing.</p>
+            </motion.div>
             )}
             
             {/* Action Buttons - only show after animation is complete */}
