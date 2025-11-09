@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>GoodFella | Your Path to Wellness</title>
+        <title>GoodFella | Wellness Intelligence</title>
         <meta 
           name="description" 
           content="Join the beta! Meet GoodFella, your social wellness companion who understands your emotional needs, facilitates meaningful connections, and supports your mental health through intelligent social awareness." 
@@ -27,7 +27,7 @@ export default function Home() {
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://goodfella.ai" />
-        <meta property="og:title" content="GoodFella - Your Path to Wellness" />
+        <meta property="og:title" content="GoodFella | Wellness Intelligence Companion" />
         <meta 
           property="og:description" 
           content="Knows you deeply. Helps you proactively. Connects you when it matters. All without you having to explain a thing. Join the beta." 
@@ -37,7 +37,7 @@ export default function Home() {
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://goodfella.ai" />
-        <meta property="twitter:title" content="GoodFella - Your Path to Wellness" />
+        <meta property="twitter:title" content="GoodFella | Wellness Intelligence Companion" />
         <meta 
           property="twitter:description" 
           content="Knows you deeply. Helps you proactively. Connects you when it matters. All without you having to explain a thing. Join the beta." 
