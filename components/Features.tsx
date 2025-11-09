@@ -15,7 +15,7 @@ const Features = () => {
     {
       id: 'memories-everything',
       title: 'Deep Social Understanding',
-      subtitle: 'Knows your social patterns and emotional rhythms',
+      subtitle: 'Always met where your energy really is',
       description: 'GoodFella learns your social preferences, energy patterns, and emotional needs. It understands when you thrive in groups versus when you need quiet time, recognizes your stress signals, and adapts to support your social wellness. Your mental health patterns, social energy cycles, and what brings you joy are always understood.',
       icon: Brain,
       gradient: 'from-blue-500 to-cyan-500',
@@ -45,7 +45,7 @@ const Features = () => {
       id: 'unity-system',
       title: 'Built to Step Back',
       subtitle: 'Real People, Real Connection',
-      description: 'GoodFella creates opportunities for authentic human connection, then gracefully steps back to let real relationships flourish. It understands that social wellness comes from genuine human bonds, not digital interactions. The best social technology doesn\'t replace human connection: it nurtures and facilitates it.',
+      description: 'GoodFella notices when you\'d feel better sharing a moment with someone. It lines up the friend who gets you, finds a time that works for both of you, finds and confirms a place that feels right, then steps back so the memory belongs to you and your tribe.',
       icon: MessageCircle,
       gradient: 'from-green-500 to-teal-500',
       demoText: 'I noticed your mom shared a photo of her garden blooming! I\'ve coordinated a surprise family garden day this weekend. Your sister Sarah (who\'s been struggling with her plants) gets real gardening tips, your dad gets his family barbecue, and everyone gets real hugs, real laughter, real connection - the kind that actually heals loneliness and builds lasting bonds.'
