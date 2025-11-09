@@ -48,7 +48,7 @@ const Hero = () => {
           setAnimationComplete(true);
         }, 500);
       }
-    }, 100); // Type each character every 100ms
+    }, 150); // Type each character every 100ms
 
     return () => clearInterval(typingInterval);
   }, [showTyping, wellnessText]);
