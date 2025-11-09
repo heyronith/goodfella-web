@@ -53,6 +53,13 @@ const Hero = () => {
     return () => clearInterval(typingInterval);
   }, [showTyping, wellnessText]);
 
+  // Preload hero video as soon as the component mounts
+  useEffect(() => {
+    if (heroVideoRef.current) {
+      heroVideoRef.current.load();
+    }
+  }, []);
+
       // Cursor blinking animation
   useEffect(() => {
     if (!showCursor || animationComplete) return;
@@ -75,16 +82,20 @@ const Hero = () => {
       
       // Wait for video to be ready and then play
       const startVideo = () => {
-        video.play().catch(console.error);
+        setTimeout(() => {
+          video.play().catch((err) => {
+            console.error(err);
+          });
+        }, 1000);
       };
       
       if (video.readyState >= 3) {
-        // Video is ready, start after delay
-        setTimeout(startVideo, 500);
+        // Video is ready, start after 1 second delay
+        startVideo();
       } else {
         // Wait for video to be ready
         video.addEventListener('canplay', () => {
-          setTimeout(startVideo, 500);
+          startVideo();
         }, { once: true });
       }
     }
@@ -110,6 +121,21 @@ const Hero = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (showDemoModal) {
+      if (modalVideoRef.current) {
+        modalVideoRef.current.load();
+        const timer = setTimeout(() => {
+          modalVideoRef.current?.play().catch(() => {});
+        }, 1000);
+        return () => clearTimeout(timer);
+      }
+    } else if (modalVideoRef.current) {
+      modalVideoRef.current.pause();
+      modalVideoRef.current.currentTime = 0;
+    }
+  }, [showDemoModal]);
 
   return (
     <>
@@ -183,13 +209,13 @@ const Hero = () => {
             )}
           </div>
 
-          {/* Right Content - iPhone Demo - only show after animation is complete */}
-          {animationComplete && (
+          {/* Right Content - iPhone Demo */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="relative flex items-center justify-center"
+            animate={animationComplete ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 0.8, delay: animationComplete ? 0.4 : 0 }}
+            className={`relative flex items-center justify-center ${animationComplete ? '' : 'pointer-events-none'}`}
+            aria-hidden={!animationComplete}
           >
             <div className="relative max-w-xs mx-auto">
               {/* iPhone Mockup Container */}
@@ -212,7 +238,6 @@ const Hero = () => {
                             ref={heroVideoRef}
                             muted
                             playsInline
-                            autoPlay
                             preload="auto"
                             loop
                             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
@@ -255,7 +280,6 @@ const Hero = () => {
               </div>
             </div>
           </motion.div>
-          )}
         </div>
       </section>
 
@@ -319,7 +343,7 @@ const Hero = () => {
                         preload="metadata"
                         className="w-full h-full object-cover"
                       >
-                        <source src="/demo/demo%203.webm" type="video/webm" />
+                        <source src="/demo/demo3.webm" type="video/webm" />
                         Your browser does not support the video tag.
                       </video>
                       
