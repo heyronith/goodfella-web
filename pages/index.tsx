@@ -59,6 +59,7 @@ export default function Home() {
         <link rel="preload" href="/demo/1102.gif" as="image" />
         <link rel="preload" href="/demo/Untitled.gif" as="image" />
         <link rel="preload" href="/demo/stepback.gif" as="image" />
+        <link rel="preload" href="/demo/demo3.webm" as="video" type="video/webm" />
 
         {/* Structured Data */}
         <script
