@@ -14,7 +14,7 @@ const Hero = () => {
   const controls = useAnimation();
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
-  const wellbeingText = 'Wellbeing.';
+  const wellnessText = 'Wellness.';
 
   // Intro animation sequence
   useEffect(() => {
@@ -31,14 +31,14 @@ const Hero = () => {
     sequence();
   }, []);
 
-  // Typing animation for "Wellbeing"
+  // Typing animation for "Wellness"
   useEffect(() => {
     if (!showTyping) return;
     
     let currentIndex = 0;
     const typingInterval = setInterval(() => {
-      if (currentIndex <= wellbeingText.length) {
-        setTypedText(wellbeingText.slice(0, currentIndex));
+      if (currentIndex <= wellnessText.length) {
+        setTypedText(wellnessText.slice(0, currentIndex));
         currentIndex++;
       } else {
         clearInterval(typingInterval);
@@ -51,7 +51,7 @@ const Hero = () => {
     }, 100); // Type each character every 100ms
 
     return () => clearInterval(typingInterval);
-  }, [showTyping, wellbeingText]);
+  }, [showTyping, wellnessText]);
 
       // Cursor blinking animation
   useEffect(() => {
@@ -141,15 +141,14 @@ const Hero = () => {
             
             {/* Description - only show after animation is complete */}
             {animationComplete && (
-            <motion.div
+            <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed font-light"
             >
-                <p>Knowing you deeply. Helping you proactively. Connecting you with people when it matters.</p>
-                <p className="mt-1">All without you having to explain a thing.</p>
-            </motion.div>
+                Knowing you emotionally. Helping you proactively. Connecting you with people when it matters. All without you having to explain a thing.
+            </motion.p>
             )}
             
             {/* Action Buttons - only show after animation is complete */}
@@ -218,8 +217,7 @@ const Hero = () => {
                             loop
                             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
                           >
-                            <source src="/hero.mov" type="video/mp4" />
-                            <source src="/hero.mov" type="video/quicktime" />
+                            <source src="/demo/1108%20(2)(1).mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                           </video>
                           
@@ -321,8 +319,7 @@ const Hero = () => {
                         preload="metadata"
                         className="w-full h-full object-cover"
                       >
-                        <source src="/hero.mov" type="video/mp4" />
-                        <source src="/hero.mov" type="video/quicktime" />
+                        <source src="/demo/1108%20(2)(1).mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                       </video>
                       

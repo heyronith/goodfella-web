@@ -231,7 +231,7 @@ const FinalCTA = () => {
                   <span className="text-2xl">🎉</span>
                 </div>
                 <h3 className="text-xl font-bold text-black mb-2">
-                  Welcome to better social wellbeing!
+                  Welcome to better social wellness!
                 </h3>
                 <p className="text-black font-semibold">
                   You're now part of a community focused on meaningful connections.

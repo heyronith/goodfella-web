@@ -8,7 +8,7 @@ const FAQ = () => {
   const faqs = [
     {
       question: "Who is Lex?",
-      answer: "Lex is GoodFella's intelligent companion that learns your patterns and proactively supports your wellbeing. When you see notifications 'From Lex,' that's your personalized companion reaching out to help based on what it understands about you."
+      answer: "Lex is the brain behind GoodFella. Lex learns your patterns, proactively supports your wellness, and reaches out when it knows you need help. When you see notifications 'From Lex,' that's your companion speaking up on your behalf."
     },
     {
       question: "Is my data private?",
@@ -28,7 +28,7 @@ const FAQ = () => {
     },
     {
       question: "Is GoodFella a replacement for therapy?",
-      answer: "No. GoodFella is a social wellbeing companion that facilitates connections and provides preventive support. It's not a substitute for professional mental health care. If you're experiencing a crisis, please contact a mental health professional or crisis hotline."
+      answer: "No. GoodFella is a social wellness companion that facilitates connections and provides preventive support. It's not a substitute for professional mental health care. If you're experiencing a crisis, please contact a mental health professional or crisis hotline."
     }
   ];
 
