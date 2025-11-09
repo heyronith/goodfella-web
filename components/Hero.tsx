@@ -217,7 +217,7 @@ const Hero = () => {
                             loop
                             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700"
                           >
-                            <source src="/demo/demoweb.webm" type="video/webm" />
+                            <source src="/demo/demo3.webm" type="video/webm" />
                             Your browser does not support the video tag.
                           </video>
                           
@@ -319,7 +319,7 @@ const Hero = () => {
                         preload="metadata"
                         className="w-full h-full object-cover"
                       >
-                        <source src="/demo/demoweb.webm" type="video/webm" />
+                        <source src="/demo/demo%203.webm" type="video/webm" />
                         Your browser does not support the video tag.
                       </video>
                       
