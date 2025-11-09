@@ -22,10 +22,10 @@ const Hero = () => {
       // Show initial title immediately
       setShowInitialTitle(true);
       
-      // Start typing after 1 second
+      // Start typing after 1.5 seconds to give the hero video more time to load
       setTimeout(() => {
         setShowTyping(true);
-      }, 1000);
+      }, 1500);
     };
     
     sequence();
