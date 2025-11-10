@@ -87,7 +87,7 @@ export default function Home() {
         <Navigation />
         <Hero />
         <Features />
-        <RunningText />
+        {/* <RunningText /> */}
         <FinalCTA />
         <FAQ />
         <Footer />
