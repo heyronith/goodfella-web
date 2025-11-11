@@ -243,7 +243,7 @@ const FinalCTA = () => {
             )}
           </motion.div>
 
-          {/* iOS and seat info below CTA */}
+          {/* iOS info below CTA */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -251,9 +251,6 @@ const FinalCTA = () => {
             viewport={{ once: true }}
             className="text-sm text-gray-400 text-center space-y-1"
           >
-            <p>
-              <span className="text-brand-amber font-semibold">{availableSeats}</span> of <span className="text-brand-amber font-semibold">{totalSeats}</span> early access spots remaining
-            </p>
             <p>
               Available only for <span className="text-brand-amber font-semibold">iPhones</span>
             </p>
