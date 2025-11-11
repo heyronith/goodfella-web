@@ -14,7 +14,7 @@ const Hero = () => {
   const controls = useAnimation();
   const heroVideoRef = useRef<HTMLVideoElement>(null);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
-  const wellnessText = 'Wellness.';
+  const wellnessText = 'Intelligent.';
 
   // Intro animation sequence
   useEffect(() => {
@@ -31,7 +31,7 @@ const Hero = () => {
     sequence();
   }, []);
 
-  // Typing animation for "Wellness"
+  // Typing animation for "Intelligent"
   useEffect(() => {
     if (!showTyping) return;
     
@@ -147,7 +147,7 @@ const Hero = () => {
             <div className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight py-4">
               {showInitialTitle && (
                 <>
-                  Welcome to the Future of{' '}
+                  Human Wellness, Finally {' '}
                   {!showTyping && (
                     <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>
                       _
@@ -173,7 +173,7 @@ const Hero = () => {
                 transition={{ duration: 0.8 }}
                 className="text-xl sm:text-2xl text-gray-300 mb-8 leading-relaxed font-light"
             >
-                Knowing you emotionally. Helping you proactively. Connecting you with people when it matters. All without you having to explain a thing.
+                Knowing you emotionally. Helping you proactively. Connecting you with people when it matters. All without you having to explain a thing and that is the future of human wellness.
             </motion.p>
             )}
             
